@@ -11,7 +11,7 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-      "no-console":"off"
-      // "allowForLoopAfterthoughts": true
+      "no-console":"off",
+      "allowForLoopAfterthoughts": 0      
     }
 }
