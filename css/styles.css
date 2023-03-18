@@ -15,3 +15,35 @@ h1 {
   background-color: yellow;
   margin: auto;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+  width: 600px;
+  margin: auto;
+}
+
+.status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 10px 0;
+}
+
+p {
+  font-size: large;
+  font-weight: bolder;
+  color: darkmagenta;
+}
+
+.btnReset {
+  align-self: center;
+  width: 100px;
+  padding: 12px 10px;
+  font-size: medium;
+  font-weight: bolder;
+  color: darkmagenta;
+  cursor: default;
+}
