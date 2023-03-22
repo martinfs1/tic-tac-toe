@@ -1,22 +1,32 @@
-const PlayerFactory = (name, mark) => ({ name, mark });
+let symbolState = 'X';
+
+const changeState = () => {
+  symbolState = (symbolState === 'X') ? 'O' : 'X';
+};
+
+// const PlayerFactory = (name, mark) => ({ name, mark });
 
 const Gameboard = (() => {
   const board = Array(9).fill(null);
   let boardDiv;
   let mark;
+  let values = [];
+  let valueXIndexs = [];
+  let valueOIndexs = [];
 
   const resetBoard = () => {
+    symbolState = 'X';
     boardDiv = document.querySelectorAll('#cellBtn');
     boardDiv.forEach((cell) => {
       cell.innerHTML = '';
     });
 
     board.forEach((element, index) => {
-      if (element) {
-        board[index] = null;
-      }
+      if (element) board[index] = null;
+      values = [];
+      valueXIndexs = [];
+      valueOIndexs = [];
     });
-    console.log(board);
   };
 
   const renderBoard = () => {
@@ -29,23 +39,45 @@ const Gameboard = (() => {
     });
   };
 
-  const setCell = (markPlayer) => {
+  const checkForWin = () => {
+    const winningCombos = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6],
+    ];
+
+    valueXIndexs = board.map((element, index) => ((element === 'X') ? index : null));
+    winningCombos.forEach((combo) => {
+      if (combo.every((i) => valueXIndexs.includes(i))) {
+        console.log('The winner is X ');
+        alert('The winner is X ');
+      }
+    });
+    valueOIndexs = board.map((element, index) => ((element === 'O') ? index : null));
+    winningCombos.forEach((combo) => {
+      if (combo.every((i) => valueOIndexs.includes(i))) {
+        console.log('The winner is O ');
+        alert('The winner is O');
+      }
+    });
+  };
+
+  const setCell = () => {
     document.addEventListener('click', (event) => {
       event.preventDefault();
       if (event.target.matches('#cellBtn')) {
         mark = event.target;
         const markValue = Number(mark.dataset.mark);
-        console.log(markValue);
         board.forEach((element, index) => {
           if (markValue === index) {
-            board[index] = `${markPlayer}`;
+            board[index] = `${symbolState}`;
             mark.innerHTML = board[index];
+            values.push(board[index]);
+            changeState();
+            if (values.length >= 5) checkForWin();
           }
         });
-        console.log(board);
-      } else if (event.target.matches('#rstBtn')) {
-        resetBoard();
-      }
+      } else if (event.target.matches('#rstBtn')) resetBoard();
     });
   };
 
@@ -58,17 +90,14 @@ const Gameboard = (() => {
 const FlowGame = (() => {
   const playerTurnDiv = document.querySelector('.turn');
   const board = Gameboard;
-  const setCell = Gameboard.setCell();
-  const playerOne = PlayerFactory('Lauri', 'X');
-  const playerTwo = PlayerFactory('Cristian', 'O');
 
-  playerTurnDiv.textContent = playerOne.name;
+  const setCell = Gameboard.setCell();
 
   return {
-    playerOne,
-    playerTwo,
-    getBoard: board.getBoard,
-    setCell,
+    // playerOne,
+    // playerTwo,
+    // getBoard: board.getBoard,
+    // setCell,
   };
 })();
 
@@ -76,4 +105,3 @@ const DisplayController = (() => {
   const renderBoard = Gameboard.renderBoard();
   return {};
 })();
-// I need to solve the problem of reset button and set the cell.
