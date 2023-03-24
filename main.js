@@ -45,21 +45,20 @@ const Gameboard = (() => {
       [0, 3, 6], [1, 4, 7], [2, 5, 8],
       [0, 4, 8], [2, 4, 6],
     ];
-
     valueXIndexs = board.map((element, index) => ((element === 'X') ? index : null));
-    winningCombos.forEach((combo) => {
+    for (const combo of winningCombos) {
       if (combo.every((i) => valueXIndexs.includes(i))) {
-        console.log('The winner is X ');
-        alert('The winner is X ');
+        return 'X';
       }
-    });
+    }
     valueOIndexs = board.map((element, index) => ((element === 'O') ? index : null));
-    winningCombos.forEach((combo) => {
+    for (const combo of winningCombos) {
       if (combo.every((i) => valueOIndexs.includes(i))) {
-        console.log('The winner is O ');
-        alert('The winner is O');
+        return 'O';
       }
-    });
+    }
+    return null;
+
   };
 
   const setCell = () => {
@@ -74,7 +73,14 @@ const Gameboard = (() => {
             mark.innerHTML = board[index];
             values.push(board[index]);
             changeState();
-            if (values.length >= 5) checkForWin();
+            if (values.length >= 5) {
+              const winner = checkForWin();
+              if (winner) {
+                console.log(`The winner is ${winner}`);
+              } else if (values.length === 9) {
+                console.log(`There is a tie.`);
+              }
+            }
           }
         });
       } else if (event.target.matches('#rstBtn')) resetBoard();
