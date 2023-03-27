@@ -12,10 +12,24 @@
 
 <body>
   <div class="container">
-    <h1>Tic Tac Toe</h1>
-    <div class="status" id="status">
-      <h1 class="turn"></h1>
-      <button class="btnReset" id="rstBtn">Reset</button>
+    <div class="card">
+      <h2>Tic Tac Toe</h2>
+      <form>
+        <label for="player-name">Players Name:</label>
+        <input type="text" id="player-X" name="player-X" placeholder="Enter your name for player with the mark 'X'"
+          required>
+        <input type="text" id="player-O" name="player-O" placeholder="Enter your name for player with the mark 'O'"
+          required>
+        <button type="submit" id="start-btn">Start</button>
+        <button type="button" id="rstBtn">Restart</button>
+      </form>
+    </div>
+    <div class="card" id="status">
+      <h3 class="plyrX" id="plyrX"></h3>
+      <h3 class="plyrO" id="plyrO"></h3>
+      <div>
+        <p id="winner"></p>
+      </div>
     </div>
     <div class="board" id="boardDiv"></div>
   </div>

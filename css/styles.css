@@ -1,6 +1,11 @@
-h1 {
-  color: darkmagenta;
-  text-align: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
+  width: 600px;
+  margin: 50px auto;
+  gap: 15px;
 }
 
 .board {
@@ -12,38 +17,65 @@ h1 {
   border: 1px solid black;
   gap: 2px;
   padding: 2px;
-  background-color: yellow;
+  background-color: red;
   margin: auto;
 }
 
-.container {
+
+.card {
+  background-color: #F2F2F2;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+.card form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  font-family: 'Roboto', sans-serif;
-  width: 600px;
-  margin: auto;
+  margin-top: 20px;
 }
 
-.status {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  margin: 10px 0;
+.card label {
+  margin-bottom: 10px;
 }
 
-p {
-  font-size: large;
-  font-weight: bolder;
-  color: darkmagenta;
+.card input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.btnReset {
-  align-self: center;
-  width: 100px;
-  padding: 12px 10px;
-  font-size: medium;
-  font-weight: bolder;
-  color: darkmagenta;
-  cursor: default;
+.card button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.card #start-btn {
+  background-color: #000;
+  color: #fff;
+}
+
+.card #rstBtn {
+  background-color: #ccc;
+  color: #000;
+}
+
+.card #winner {
+  margin-top: 20px;
+  font-size: 20px;
 }
